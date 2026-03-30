@@ -6,21 +6,26 @@ workflows:
     integrations:
       app_store_connect: buscamotobrasil
     environment:
-      ios_signing:
-        distribution_type: app_store
-        bundle_identifier: br.com.buscamotobrasil.app
+      groups:
+        - ios_credentials
       vars:
         BUNDLE_ID: "br.com.buscamotobrasil.app"
         XCODE_WORKSPACE: "src/Busca Moto Brasil.xcworkspace"
         XCODE_SCHEME: "Busca Moto Brasil"
     scripts:
+      - name: Set up keychain
+        script: |
+          keychain initialize
+      - name: Set up certificate
+        script: |
+          certificate add-certifictes
+      - name: Set up provisioning profile
+        script: |
+          xcode-project use-profiles
       - name: Install CocoaPods
         script: |
           cd src
           pod install
-      - name: Set up code signing
-        script: |
-          xcode-project use-profiles --verbose
       - name: Build iOS app
         script: |
           xcode-project build-ipa \
