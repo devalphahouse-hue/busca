@@ -10,7 +10,6 @@ workflows:
         distribution_type: app_store
         bundle_identifier: br.com.buscamotobrasil.app
       vars:
-        APP_STORE_APPLE_ID: 1
         BUNDLE_ID: "br.com.buscamotobrasil.app"
         XCODE_WORKSPACE: "src/Busca Moto Brasil.xcworkspace"
         XCODE_SCHEME: "Busca Moto Brasil"
