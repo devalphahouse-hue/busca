@@ -6,46 +6,21 @@ workflows:
     integrations:
       app_store_connect: buscamotobrasil
     environment:
-      groups:
-        - ios_credentials
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: br.com.buscamotobrasil.app
       vars:
         BUNDLE_ID: "br.com.buscamotobrasil.app"
         XCODE_WORKSPACE: "src/Busca Moto Brasil.xcworkspace"
         XCODE_SCHEME: "Busca Moto Brasil"
     scripts:
-      - name: Set up certificate and profile
-        script: |
-          echo "$CM_CERTIFICATE" | base64 --decode > /tmp/certificate.p12
-          mkdir -p /Users/builder/Library/MobileDevice/Provisioning\ Profiles
-          echo "$CM_PROVISIONING_PROFILE" | base64 --decode > /Users/builder/Library/MobileDevice/Provisioning\ Profiles/profile.mobileprovision
-          security create-keychain -p "" build.keychain
-          security import /tmp/certificate.p12 -k ~/Library/Keychains/build.keychain -P "$CM_CERTIFICATE_PASSWORD" -T /usr/bin/codesign
-          security set-key-partition-list -S apple-tool:,apple: -s -k "" ~/Library/Keychains/build.keychain
-          security list-keychains -d user -s ~/Library/Keychains/build.keychain
-          security default-keychain -s ~/Library/Keychains/build.keychain
       - name: Install CocoaPods
         script: |
           cd src
           pod install
-      - name: Create export options
+      - name: Set up code signing
         script: |
-          cat > /Users/builder/export_options.plist << EOF
-          <?xml version="1.0" encoding="UTF-8"?>
-          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-          <plist version="1.0">
-          <dict>
-            <key>method</key>
-            <string>app-store</string>
-            <key>teamID</key>
-            <string>H3CVW3YGH4</string>
-            <key>provisioningProfiles</key>
-            <dict>
-              <key>br.com.buscamotobrasil.app</key>
-              <string>BuscaMotoBrasil_AppStore</string>
-            </dict>
-          </dict>
-          </plist>
-          EOF
+          xcode-project use-profiles
       - name: Build iOS app
         script: |
           xcode-project build-ipa \
