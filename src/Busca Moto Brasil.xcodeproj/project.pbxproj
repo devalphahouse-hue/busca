@@ -370,13 +370,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = NO;
 				CODE_SIGN_ENTITLEMENTS = "Busca Moto Brasil/Entitlements/Entitlements.plist";
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "Apple Distribution";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = H3CVW3YGH4;
-PROVISIONING_PROFILE_SPECIFIER = "BuscaMotoBrasil_AppStore";
-CODE_SIGN_STYLE = Manual;
-CODE_SIGN_IDENTITY = "Apple Distribution";
 				INFOPLIST_FILE = "Busca Moto Brasil/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -384,7 +381,6 @@ CODE_SIGN_IDENTITY = "Apple Distribution";
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1;
-				CURRENT_PROJECT_VERSION = 1;
 				PRODUCT_BUNDLE_IDENTIFIER = "br.com.buscamotobrasil.app";
 				PRODUCT_NAME = "BuscaMotoBrasil";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -402,6 +398,7 @@ CODE_SIGN_IDENTITY = "Apple Distribution";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = NO;
 				CODE_SIGN_ENTITLEMENTS = "Busca Moto Brasil/Entitlements/Entitlements.plist";
+				CODE_SIGN_IDENTITY = "Apple Distribution";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = H3CVW3YGH4;
@@ -412,9 +409,9 @@ CODE_SIGN_IDENTITY = "Apple Distribution";
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1;
-				CURRENT_PROJECT_VERSION = 1;
 				PRODUCT_BUNDLE_IDENTIFIER = "br.com.buscamotobrasil.app";
 				PRODUCT_NAME = "BuscaMotoBrasil";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
 				SWIFT_VERSION = 5.0;
