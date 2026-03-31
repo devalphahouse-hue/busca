@@ -6,9 +6,6 @@ workflows:
     integrations:
       app_store_connect: buscamotobrasil
     environment:
-      ios_signing:
-        distribution_type: app_store
-        bundle_identifier: br.com.buscamotobrasil.app
       groups:
         - ios_credentials
       vars:
@@ -19,6 +16,7 @@ workflows:
       - name: Set up certificate and profile
         script: |
           echo $CM_CERTIFICATE | base64 --decode > /tmp/certificate.p12
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           echo $CM_PROVISIONING_PROFILE | base64 --decode > ~/Library/MobileDevice/Provisioning\ Profiles/profile.mobileprovision
           security create-keychain -p "" build.keychain
           security import /tmp/certificate.p12 -k ~/Library/Keychains/build.keychain -P $CM_CERTIFICATE_PASSWORD -T /usr/bin/codesign
